@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainComponent implements OnInit {
+export class LayoutComponent implements OnInit {
 
   constructor() { }
 
