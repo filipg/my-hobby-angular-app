@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -21,9 +21,9 @@ export class RegisterComponent implements OnInit {
 
   private createForm(): void {
     this.form = this.fb.group({
-      'username': ['', Validators.required],
-      'password': ['', Validators.required],
-      'confirmPassword': ['', Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
