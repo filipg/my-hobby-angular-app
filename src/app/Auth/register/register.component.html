@@ -1,1 +1,20 @@
-<p>register works!</p>
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="form__field form__field--one">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form__field form__field--two">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form__field form__field--two">
+      <mat-label>Confirm password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword">
+    </mat-form-field>
+
+    <button mat-stroked-button type="submit" color="primary">Zaloguj</button>
+  </form>
+</div>

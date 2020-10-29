@@ -11,6 +11,8 @@ import { HeaderComponent } from './Layout/header/header.component';
 import { FooterComponent } from './Layout/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './Layout/layout.component';
+import { ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -20,13 +22,14 @@ import { LayoutComponent } from './Layout/layout.component';
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
