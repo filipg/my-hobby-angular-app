@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../auth.service";
-import { catchError, tap } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { AuthService } from '../auth.service';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +13,12 @@ import { throwError } from "rxjs";
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
+  showError = false;
+  showSuccess = false;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -32,11 +34,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
+    // console.log(this.form.value);
     this.authService.signup(this.form.value.username, this.form.value.password)
       .pipe(
-        tap(response => console.log(response)),
+        tap(() => this.showSuccess = true),
         catchError(e => throwError(e))
-      ).subscribe();
+      ).subscribe(() => {}, error => {
+        console.log(error);
+        this.showError = true;
+    });
   }
 }
