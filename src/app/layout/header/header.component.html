@@ -1,7 +1,18 @@
 <nav>
   <span>myHobby</span>
-  <ul>
-    <li><a [routerLink]="'/login'">Login</a></li>
-    <li><a [routerLink]="'/register'">Register</a></li>
-  </ul>
+
+  <ng-container *ngIf="isAuthenticated; then isAuth else notAuth"></ng-container>
+
+  <ng-template #isAuth>
+    <ul>
+      <li><a (click)="logout()">Logout</a></li>
+    </ul>
+  </ng-template>
+
+  <ng-template #notAuth>
+    <ul>
+      <li><a [routerLink]="'/login'">Login</a></li>
+      <li><a [routerLink]="'/register'">Register</a></li>
+    </ul>
+  </ng-template>
 </nav>

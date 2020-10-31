@@ -43,6 +43,11 @@ export class AuthService {
     );
   }
 
+  logout(): void {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
   getUserBaseInfo(): Observable<{ _id: string, username: string }> {
     return this.http.get<{ _id: string, username: string }>(`${environment.api}/auth/me`);
   }

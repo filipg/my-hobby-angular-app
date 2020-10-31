@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../auth.service";
-import { catchError, tap } from "rxjs/operators";
-import { throwError } from "rxjs";
-import { Router } from "@angular/router";
+import { AuthService } from '../auth.service';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
