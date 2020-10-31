@@ -4,7 +4,7 @@ import { LayoutComponent } from './Layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './Auth/login/login.component';
 import { RegisterComponent } from './Auth/register/register.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './Auth/guards/auth.guard';
 
 const routes: Routes = [
   {

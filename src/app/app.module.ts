@@ -12,7 +12,8 @@ import { FooterComponent } from './Layout/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './Layout/layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './Auth/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
