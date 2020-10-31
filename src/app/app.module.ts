@@ -5,15 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { LoginComponent } from './Auth/login/login.component';
-import { RegisterComponent } from './Auth/register/register.component';
-import { HeaderComponent } from './Layout/header/header.component';
-import { FooterComponent } from './Layout/footer/footer.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { LayoutComponent } from './Layout/layout.component';
+import { LayoutComponent } from './layout/layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { JwtInterceptor } from './Auth/interceptors/jwt.interceptor';
+import { JwtInterceptor } from './auth/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
