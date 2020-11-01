@@ -1,0 +1,44 @@
+.container {
+  .image-description-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .description {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      p {
+        font-weight: 300;
+      }
+
+      fa-icon {
+        font-size: 36px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .hobbies {
+    .hobbies-header {
+      display: flex;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+      }
+
+      fa-icon {
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0 10px;
+      }
+    }
+  }
+}
