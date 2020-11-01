@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { faEdit, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileInfoEditDialogComponent } from './profile-info-edit-dialog/profile-info-edit-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -11,13 +13,15 @@ export class ProfileComponent implements OnInit {
 
   editIcon: IconDefinition = faEdit;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   editProfileInfo(): void {
-    console.log('Edit profile info');
+    this.dialog.open(ProfileInfoEditDialogComponent, {
+      width: '500px'
+    });
   }
 
   editProfileHobbies(): void {
