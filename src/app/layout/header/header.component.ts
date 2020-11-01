@@ -3,6 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthenticated = false;
   subscription: Subscription;
+  userIcon: IconDefinition = faUser;
 
   constructor(
     private authService: AuthService,
