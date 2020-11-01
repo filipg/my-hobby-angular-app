@@ -16,6 +16,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/interceptors/jwt.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileInfoEditDialogComponent } from './profile/profile-info-edit-dialog/profile-info-edit-dialog.component';
+import { ProfileHobbyEditDialogComponent } from './profile/profile-hobby-edit-dialog/profile-hobby-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
     LayoutComponent,
     HomeComponent,
     ProfileComponent,
+    ProfileInfoEditDialogComponent,
+    ProfileHobbyEditDialogComponent,
   ],
   imports: [
     BrowserModule,
