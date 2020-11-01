@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'home',
         pathMatch: 'full'
       },
       {
@@ -28,6 +28,11 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: '**',
+        redirectTo: 'home',
+        pathMatch: 'full'
       }
     ]
   }
