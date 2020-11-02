@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
 
   editIcon: IconDefinition = faEdit;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
