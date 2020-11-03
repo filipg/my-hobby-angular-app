@@ -1,7 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { faEdit, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileInfoEditDialogComponent } from './profile-info-edit-dialog/profile-info-edit-dialog.component';
+import { AuthService } from '../auth/auth.service';
+import { ProfileService } from './profile.service';
+import { throwError } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -9,16 +13,19 @@ import { ProfileInfoEditDialogComponent } from './profile-info-edit-dialog/profi
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
+
+  profile$ = this.authService.getUserBaseInfo().pipe(
+    switchMap(user => this.profileService.getProfileInfo(user._id)),
+    catchError(e => throwError(e)));
 
   editIcon: IconDefinition = faEdit;
 
   constructor(
+    private authService: AuthService,
+    private profileService: ProfileService,
     public dialog: MatDialog
   ) { }
-
-  ngOnInit(): void {
-  }
 
   editProfileInfo(): void {
     this.dialog.open(ProfileInfoEditDialogComponent, {

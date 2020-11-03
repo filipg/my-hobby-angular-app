@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { ProfileService } from "../../profile/profile.service";
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,12 @@ export class RegisterComponent implements OnInit {
     this.authService.signup(this.form.value.username, this.form.value.password)
       .pipe(
         tap(() => this.showSuccess = true),
+        switchMap(user => this.profileService.addProfileInfo({
+          _id: user._id,
+          description: '',
+          phone: '',
+          email: ''
+        })),
         catchError(e => throwError(e))
       ).subscribe(() => {}, error => {
         console.log(error);

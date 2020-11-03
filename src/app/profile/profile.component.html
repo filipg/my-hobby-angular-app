@@ -1,14 +1,16 @@
-<div class="container">
+<div class="container" *ngIf="(profile$ | async) as profile">
   <div class="image-description-container">
     <img [src]="'assets/placeholder.png'">
     <div class="description">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla magna mauris, fermentum sed diam eu, congue condimentum mauris. Maecenas orci mauris, semper sed elit ut, hendrerit accumsan turpis. Phasellus augue velit, venenatis eu tellus eu, accumsan aliquam eros. Curabitur quis aliquet nunc, sed auctor ipsum.
+        {{profile.description}}
       </p>
       <fa-icon [icon]="editIcon" (click)="editProfileInfo()"></fa-icon>
     </div>
   </div>
   <h1>Username</h1>
+  <p>Phone: {{profile.phone}}</p>
+  <p>E-mail: {{profile.email}}</p>
   <div class="hobbies">
     <div class="hobbies-header">
       <h3>Hobbies:</h3>
