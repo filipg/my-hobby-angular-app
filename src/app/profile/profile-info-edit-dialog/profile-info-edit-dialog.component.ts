@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProfileModel } from '../models';
 import { ProfileService } from '../profile.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-info-edit-dialog',
@@ -11,10 +10,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile-info-edit-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileInfoEditDialogComponent implements OnInit, OnDestroy {
+export class ProfileInfoEditDialogComponent implements OnInit {
 
   form: FormGroup;
-  subscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +34,7 @@ export class ProfileInfoEditDialogComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.subscription = this.profileService.updateProfileInfo(this.data._id, {
+    this.profileService.updateProfileInfo(this.data._id, {
       _id: this.data._id,
       description: this.form.value.description,
       phone: this.form.value.phone,
@@ -44,11 +42,5 @@ export class ProfileInfoEditDialogComponent implements OnInit, OnDestroy {
     }).subscribe(data => {
       this.dialogRef.close({data});
     });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

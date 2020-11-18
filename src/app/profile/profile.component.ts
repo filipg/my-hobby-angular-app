@@ -7,6 +7,7 @@ import { ProfileService } from './profile.service';
 import { Subscription, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ProfileModel } from './models';
+import { ProfileHobbyEditDialogComponent } from "./profile-hobby-edit-dialog/profile-hobby-edit-dialog.component";
 
 @Component({
   selector: 'app-profile',
@@ -58,7 +59,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   editProfileHobbies(): void {
-    console.log('Edit profile hobbies');
+    const dialogRef = this.dialog.open(ProfileHobbyEditDialogComponent, {
+      width: '500px',
+      data: []
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+    });
   }
 
   ngOnDestroy() {

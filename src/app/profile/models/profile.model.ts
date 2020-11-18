@@ -3,4 +3,5 @@ export interface ProfileModel {
   description: string;
   phone: string;
   email: string;
+  hobbies?: string[];
 }
