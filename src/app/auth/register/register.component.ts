@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { ProfileService } from "../../profile/profile.service";
+import { ProfileService } from '../../profile/profile.service';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.log(this.form.value);
     this.authService.signup(this.form.value.username, this.form.value.password)
       .pipe(
         tap(() => this.showSuccess = true),
@@ -44,7 +43,8 @@ export class RegisterComponent implements OnInit {
           _id: user._id,
           description: '',
           phone: '',
-          email: ''
+          email: '',
+          hobbies: []
         })),
         catchError(e => throwError(e))
       ).subscribe(() => {}, error => {

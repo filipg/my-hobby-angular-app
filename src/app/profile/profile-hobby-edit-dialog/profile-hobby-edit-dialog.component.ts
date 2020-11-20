@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProfileService } from '../profile.service';
 import { Hobby } from '../models/hobby.model';
+import { tap } from 'rxjs/operators';
+import { ProfileModel } from '../models';
 
 @Component({
   selector: 'app-profile-hobby-edit-dialog',
@@ -18,24 +20,39 @@ export class ProfileHobbyEditDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProfileHobbyEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string[],
+    @Inject(MAT_DIALOG_DATA) public data: ProfileModel,
     private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.getHobbies();
   }
 
-  private createForm(): void {
+  private getHobbies(): void {
+    this.profileService.getHobbies().pipe(
+      tap(hobbies => {
+        console.log(hobbies);
+        this.hobbies = hobbies;
+      })
+    ).subscribe();
+  }
+
+    private createForm(): void {
     this.form = this.fb.group({
-      hobbies: []
+      hobbies: [this.data.hobbies]
     });
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
-    // this.profileService.updateProfileInfo(this.data._id, {}).subscribe(data => {
-    //   this.dialogRef.close({data});
-    // });
+    this.profileService.updateProfileInfo(this.data._id, {
+      _id: this.data._id,
+      description: this.data.description,
+      email: this.data.email,
+      phone: this.data.phone,
+      hobbies: this.form.value.hobbies
+    }).pipe(
+      tap(data => this.dialogRef.close({data}))
+    ).subscribe();
   }
 }

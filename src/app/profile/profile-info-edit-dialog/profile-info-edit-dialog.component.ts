@@ -38,7 +38,8 @@ export class ProfileInfoEditDialogComponent implements OnInit {
       _id: this.data._id,
       description: this.form.value.description,
       phone: this.form.value.phone,
-      email: this.form.value.email
+      email: this.form.value.email,
+      hobbies: this.data.hobbies
     }).subscribe(data => {
       this.dialogRef.close({data});
     });
