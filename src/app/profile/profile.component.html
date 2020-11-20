@@ -15,6 +15,14 @@
     <div class="hobbies-header">
       <h3>Hobbies:</h3>
       <fa-icon [icon]="editIcon" (click)="editProfileHobbies()"></fa-icon>
+
+      <div>
+        <ul *ngIf="(hobbies$ | async) as hobbies">
+          <li *ngFor="let hobby of hobbies">
+            {{hobby.name}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

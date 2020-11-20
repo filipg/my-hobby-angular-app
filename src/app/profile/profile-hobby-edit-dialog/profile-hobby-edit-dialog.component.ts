@@ -32,7 +32,6 @@ export class ProfileHobbyEditDialogComponent implements OnInit {
   private getHobbies(): void {
     this.profileService.getHobbies().pipe(
       tap(hobbies => {
-        console.log(hobbies);
         this.hobbies = hobbies;
       })
     ).subscribe();

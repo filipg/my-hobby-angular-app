@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProfileInfoEditDialogComponent } from './profile-info-edit-dialog/profile-info-edit-dialog.component';
 import { AuthService } from '../auth/auth.service';
 import { ProfileService } from './profile.service';
-import { Subscription, throwError } from 'rxjs';
+import { Subscription, throwError, zip } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ProfileModel } from './models';
 import { ProfileHobbyEditDialogComponent } from './profile-hobby-edit-dialog/profile-hobby-edit-dialog.component';
@@ -18,6 +18,7 @@ import { ProfileHobbyEditDialogComponent } from './profile-hobby-edit-dialog/pro
 export class ProfileComponent implements OnInit, OnDestroy {
 
   profile: ProfileModel;
+  hobbies$;
   editIcon: IconDefinition = faEdit;
   subscription: Subscription;
   loading = false;
@@ -37,7 +38,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.getUserBaseInfo().pipe(
       switchMap(user => this.profileService.getProfileInfo(user._id)),
       tap(data => {
+        console.log(data)
         this.profile = data;
+        const hobbiesObservable = data.hobbies.map(el => this.profileService.getHobby(el));
+        this.hobbies$ = zip(...hobbiesObservable);
         this.loading = true;
         this.changeDetectorRef.detectChanges();
       }),
@@ -65,8 +69,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      this.profile = data.data;
-      this.changeDetectorRef.detectChanges();
+      if (data) {
+        if (this.profile.hobbies !== data.data.hobbies) {
+          const hobbiesObservable = data.data.hobbies.map(el => this.profileService.getHobby(el));
+          this.hobbies$ = zip(...hobbiesObservable);
+        }
+        this.profile = data.data;
+        this.changeDetectorRef.detectChanges();
+      }
     });
   }
 

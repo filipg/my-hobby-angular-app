@@ -28,4 +28,8 @@ export class ProfileService {
   getHobbies(): Observable<Hobby[]> {
     return this.http.get<Hobby[]>(`${environment.api}/hobby`);
   }
+
+  getHobby(id: string): Observable<Hobby> {
+    return this.http.get<Hobby>(`${environment.api}/hobby/${id}`);
+  }
 }
