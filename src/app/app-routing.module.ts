@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { HobbyComponent } from './hobby/hobby.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: ':hobby',
+        component: HobbyComponent,
         canActivate: [AuthGuard]
       },
       {

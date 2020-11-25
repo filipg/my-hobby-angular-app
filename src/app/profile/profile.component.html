@@ -21,7 +21,7 @@
       <fa-icon [icon]="editIcon" (click)="editProfileHobbies()"></fa-icon>
     </div>
     <div class="hobbies-container" *ngIf="(hobbies$ | async) as hobbies">
-      <a class="hobbies-hobby-card" *ngFor="let hobby of hobbies" [routerLink]="hobby._id">
+      <a class="hobbies-hobby-card" *ngFor="let hobby of hobbies" [routerLink]="['/'+hobby._id]">
         {{hobby.name}}
       </a>
     </div>

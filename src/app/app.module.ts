@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoEditDialogComponent } from './profile/profile-info-edit-dialog/profile-info-edit-dialog.component';
 import { ProfileHobbyEditDialogComponent } from './profile/profile-hobby-edit-dialog/profile-hobby-edit-dialog.component';
+import { HobbyComponent } from './hobby/hobby.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ProfileHobbyEditDialogComponent } from './profile/profile-hobby-edit-di
     ProfileComponent,
     ProfileInfoEditDialogComponent,
     ProfileHobbyEditDialogComponent,
+    HobbyComponent,
   ],
   imports: [
     BrowserModule,
