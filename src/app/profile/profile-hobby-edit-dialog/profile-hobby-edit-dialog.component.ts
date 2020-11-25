@@ -5,6 +5,7 @@ import { ProfileService } from '../profile.service';
 import { Hobby } from '../models/hobby.model';
 import { tap } from 'rxjs/operators';
 import { ProfileModel } from '../models';
+import { HobbyService } from '../../hobby/hobby.service';
 
 @Component({
   selector: 'app-profile-hobby-edit-dialog',
@@ -21,7 +22,8 @@ export class ProfileHobbyEditDialogComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProfileHobbyEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProfileModel,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private hobbyService: HobbyService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class ProfileHobbyEditDialogComponent implements OnInit {
   }
 
   private getHobbies(): void {
-    this.profileService.getHobbies().pipe(
+    this.hobbyService.getHobbies().pipe(
       tap(hobbies => {
         this.hobbies = hobbies;
       })

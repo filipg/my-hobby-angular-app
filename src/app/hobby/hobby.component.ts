@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
-import { ProfileService } from '../profile/profile.service';
 import { Location } from '@angular/common';
 import { Hobby } from '../profile/models/hobby.model';
+import { HobbyService } from './hobby.service';
 
 @Component({
   selector: 'app-hobby',
@@ -18,7 +18,7 @@ export class HobbyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private profileService: ProfileService,
+    private hobbyService: HobbyService,
     private location: Location,
     private changeDetectorRef: ChangeDetectorRef
   ) { }
@@ -29,7 +29,7 @@ export class HobbyComponent implements OnInit {
 
   private getHobby(): void {
     this.route.params.pipe(
-      switchMap(params => this.profileService.getHobby(params.hobby)),
+      switchMap(params => this.hobbyService.getHobby(params.hobby)),
       tap(hobby => {
         this.location.replaceState(hobby.name);
         this.hobby = hobby;

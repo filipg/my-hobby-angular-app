@@ -4,6 +4,7 @@ import { ProfileService } from '../profile/profile.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { zip } from 'rxjs';
 import { Hobby } from '../profile/models/hobby.model';
+import { HobbyService } from '../hobby/hobby.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
-    private changeDetectorRef: ChangeDetectorRef) { }
+    private changeDetectorRef: ChangeDetectorRef,
+    private hobbyService: HobbyService
+  ) { }
 
 
   ngOnInit() {
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
       tap(baseInfo => this.userName = baseInfo.username),
       switchMap(user => this.profileService.getProfileInfo(user._id)),
       switchMap(profileInfo => {
-        const hobbies = profileInfo.hobbies.map(hobby => this.profileService.getHobby(hobby));
+        const hobbies = profileInfo.hobbies.map(hobby => this.hobbyService.getHobby(hobby));
         return zip(...hobbies);
       })
     ).subscribe(data => {

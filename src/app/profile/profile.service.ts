@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { ProfileModel } from './models';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Hobby } from './models/hobby.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +21,5 @@ export class ProfileService {
 
   updateProfileInfo(id: string, profile: ProfileModel): Observable<ProfileModel> {
     return this.http.patch<ProfileModel>(`${environment.api}/profile/${id}`, profile);
-  }
-
-  // later to move to hobby.service.ts
-  getHobbies(): Observable<Hobby[]> {
-    return this.http.get<Hobby[]>(`${environment.api}/hobby`);
-  }
-
-  getHobby(id: string): Observable<Hobby> {
-    return this.http.get<Hobby>(`${environment.api}/hobby/${id}`);
   }
 }

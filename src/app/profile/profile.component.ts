@@ -8,6 +8,7 @@ import { Subscription, throwError, zip } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ProfileModel } from './models';
 import { ProfileHobbyEditDialogComponent } from './profile-hobby-edit-dialog/profile-hobby-edit-dialog.component';
+import { HobbyService } from '../hobby/hobby.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private profileService: ProfileService,
     public dialog: MatDialog,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private hobbyService: HobbyService
   ) { }
 
   ngOnInit() {
@@ -42,7 +44,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       switchMap(user => this.profileService.getProfileInfo(user._id)),
       tap(data => {
         this.profile = data;
-        const hobbiesObservable = data.hobbies.map(el => this.profileService.getHobby(el));
+        const hobbiesObservable = data.hobbies.map(el => this.hobbyService.getHobby(el));
         this.hobbies$ = zip(...hobbiesObservable);
         this.loading = true;
         this.changeDetectorRef.detectChanges();
@@ -73,7 +75,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         if (this.profile.hobbies !== data.data.hobbies) {
-          const hobbiesObservable = data.data.hobbies.map(el => this.profileService.getHobby(el));
+          const hobbiesObservable = data.data.hobbies.map(el => this.hobbyService.getHobby(el));
           this.hobbies$ = zip(...hobbiesObservable);
         }
         this.profile = data.data;
