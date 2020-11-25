@@ -1,36 +1,67 @@
 .container {
+  padding: 30px;
+
   .image-description-container {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 10px;
+    position: relative;
 
-    img {
-      width: 100%;
-      height: auto;
+    .image {
+      position: relative;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
     }
 
     .description {
       display: flex;
       justify-content: space-between;
       flex-direction: column;
+      padding: 10px;
 
       p {
+        font-size: 24px;
         font-weight: 300;
       }
+    }
+
+    fa-icon {
+      position: absolute;
+      bottom: 10px;
+      right: 5px;
+      font-size: 36px;
+      cursor: pointer;
+    }
+  }
+
+  .base-info {
+    padding: 20px;
+    display: grid;
+    gap: 10px;
+    font-size: 18px;
+
+    p {
+      font-weight: 300;
 
       fa-icon {
-        font-size: 36px;
-        cursor: pointer;
+        padding-right: 5px;
       }
     }
   }
 
   .hobbies {
+    padding: 10px 20px;
+
     .hobbies-header {
       display: flex;
       align-items: center;
 
       h3 {
+        font-size: 24px;
         margin: 0;
       }
 
@@ -38,6 +69,27 @@
         font-size: 24px;
         cursor: pointer;
         padding: 0 10px;
+      }
+    }
+
+    &-container {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    &-hobby-card {
+      text-decoration: none;
+      padding: 25px;
+      margin: 5px;
+      border-radius: 15px;
+      border: 3px solid black;
+      color: black;
+      font-size: 28px;
+
+      &:hover {
+        background: #90caf9;
       }
     }
   }

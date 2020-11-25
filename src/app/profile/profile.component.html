@@ -1,28 +1,29 @@
 <div class="container" *ngIf="loading">
   <div class="image-description-container">
-    <img [src]="'assets/placeholder.png'">
+    <div class="image">
+      <img [src]="'assets/placeholder.png'">
+      <fa-icon [icon]="editIcon" (click)="editProfileInfo()"></fa-icon>
+    </div>
     <div class="description">
       <p>
         {{profile.description}}
       </p>
-      <fa-icon [icon]="editIcon" (click)="editProfileInfo()"></fa-icon>
     </div>
   </div>
-  <h1>Username</h1>
-  <p>Phone: {{profile.phone}}</p>
-  <p>E-mail: {{profile.email}}</p>
+  <div class="base-info">
+    <h1 *ngIf="(user$ | async) as user">{{user.username}}</h1>
+    <p> <fa-icon [icon]="phoneIcon"></fa-icon> {{profile.phone}}</p>
+    <p> <fa-icon [icon]="envelopeIcon"></fa-icon> {{profile.email}}</p>
+  </div>
   <div class="hobbies">
     <div class="hobbies-header">
       <h3>Hobbies:</h3>
       <fa-icon [icon]="editIcon" (click)="editProfileHobbies()"></fa-icon>
-
-      <div>
-        <ul *ngIf="(hobbies$ | async) as hobbies">
-          <li *ngFor="let hobby of hobbies">
-            {{hobby.name}}
-          </li>
-        </ul>
-      </div>
+    </div>
+    <div class="hobbies-container" *ngIf="(hobbies$ | async) as hobbies">
+      <a class="hobbies-hobby-card" *ngFor="let hobby of hobbies" [routerLink]="hobby._id">
+        {{hobby.name}}
+      </a>
     </div>
   </div>
 </div>

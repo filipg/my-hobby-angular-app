@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef, OnInit } from '@angular/core';
-import { faEdit, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEnvelope, faPhone, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileInfoEditDialogComponent } from './profile-info-edit-dialog/profile-info-edit-dialog.component';
 import { AuthService } from '../auth/auth.service';
@@ -17,9 +17,12 @@ import { ProfileHobbyEditDialogComponent } from './profile-hobby-edit-dialog/pro
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  user$ = this.authService.getUserBaseInfo();
   profile: ProfileModel;
   hobbies$;
   editIcon: IconDefinition = faEdit;
+  envelopeIcon: IconDefinition = faEnvelope;
+  phoneIcon: IconDefinition = faPhone;
   subscription: Subscription;
   loading = false;
 
@@ -38,7 +41,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.getUserBaseInfo().pipe(
       switchMap(user => this.profileService.getProfileInfo(user._id)),
       tap(data => {
-        console.log(data)
         this.profile = data;
         const hobbiesObservable = data.hobbies.map(el => this.profileService.getHobby(el));
         this.hobbies$ = zip(...hobbiesObservable);
