@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoEditDialogComponent } from './profile/profile-info-edit-dialog/profile-info-edit-dialog.component';
 import { ProfileHobbyEditDialogComponent } from './profile/profile-hobby-edit-dialog/profile-hobby-edit-dialog.component';
 import { HobbyComponent } from './hobby/hobby.component';
+import { HobbyEventsEditDialogComponent } from './hobby/hobby-events-edit-dialog/hobby-events-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HobbyComponent } from './hobby/hobby.component';
     ProfileInfoEditDialogComponent,
     ProfileHobbyEditDialogComponent,
     HobbyComponent,
+    HobbyEventsEditDialogComponent,
   ],
   imports: [
     BrowserModule,

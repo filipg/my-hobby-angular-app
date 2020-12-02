@@ -4,6 +4,9 @@ import { switchMap, tap } from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { Hobby } from '../profile/models/hobby.model';
 import { HobbyService } from './hobby.service';
+import { faEdit, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { HobbyEventsEditDialogComponent } from './hobby-events-edit-dialog/hobby-events-edit-dialog.component';
 
 @Component({
   selector: 'app-hobby',
@@ -14,13 +17,15 @@ import { HobbyService } from './hobby.service';
 export class HobbyComponent implements OnInit {
 
   hobby: Hobby;
+  editIcon: IconDefinition = faEdit;
   loading = true;
 
   constructor(
     private route: ActivatedRoute,
     private hobbyService: HobbyService,
     private location: Location,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -31,12 +36,26 @@ export class HobbyComponent implements OnInit {
     this.route.params.pipe(
       switchMap(params => this.hobbyService.getHobby(params.hobby)),
       tap(hobby => {
-        this.location.replaceState(hobby.name);
+        // this.location.replaceState(hobby.name);
         this.hobby = hobby;
         this.loading = false;
         this.changeDetectorRef.detectChanges();
       }),
     ).subscribe();
+  }
+
+  addEvent(): void {
+    const dialogRef = this.dialog.open(HobbyEventsEditDialogComponent, {
+      width: '500px',
+      data: ''
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        // this.profile = data.data;
+        this.changeDetectorRef.detectChanges();
+      }
+    });
   }
 
 }

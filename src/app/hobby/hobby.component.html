@@ -1,4 +1,13 @@
 <div class="container" *ngIf="!loading">
   <h1>{{hobby.name}}</h1>
   <p>{{hobby.description}}</p>
+
+  <div class="content">
+    <div class="events">
+      <h3>Upcoming events <fa-icon [icon]="editIcon" (click)="addEvent()"></fa-icon>:</h3>
+    </div>
+    <div class="users">
+      <h3>{{hobby.name}} users:</h3>
+    </div>
+  </div>
 </div>
