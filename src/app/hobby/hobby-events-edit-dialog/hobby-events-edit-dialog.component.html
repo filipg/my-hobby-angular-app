@@ -1,3 +1,26 @@
 <div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
+    <mat-form-field appearance="outline" class="form__field">
+      <mat-label>Event name</mat-label>
+      <input matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form__field">
+      <mat-label>Event description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form__field">
+      <mat-label>Date</mat-label>
+      <input matInput type="date" formControlName="date">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form__field">
+      <mat-label>Event time</mat-label>
+      <input matInput type="time" formControlName="time">
+    </mat-form-field>
+
+    <button mat-stroked-button type="submit" color="primary">Save</button>
+  </form>
 </div>

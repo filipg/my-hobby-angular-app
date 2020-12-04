@@ -24,6 +24,17 @@
       fa-icon {
         cursor: pointer;
       }
+
+      .event {
+        border: 3px solid black;
+        border-radius: 16px;
+        padding: 10px;
+        margin: 10px 0;
+
+        p {
+          font-size: 20px;
+        }
+      }
     }
 
     .users {

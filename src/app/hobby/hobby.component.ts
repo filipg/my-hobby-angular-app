@@ -47,12 +47,12 @@ export class HobbyComponent implements OnInit {
   addEvent(): void {
     const dialogRef = this.dialog.open(HobbyEventsEditDialogComponent, {
       width: '500px',
-      data: ''
+      data: this.hobby._id
     });
 
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
-        // this.profile = data.data;
+        this.hobby = data.data;
         this.changeDetectorRef.detectChanges();
       }
     });

@@ -5,6 +5,11 @@
   <div class="content">
     <div class="events">
       <h3>Upcoming events <fa-icon [icon]="editIcon" (click)="addEvent()"></fa-icon>:</h3>
+      <div class="event" *ngFor="let event of hobby.events">
+        <h1>{{event.name}}</h1>
+        <p>Day: {{event.date}}, time: {{event.time}}</p>
+        <p>{{event.description}}</p>
+      </div>
     </div>
     <div class="users">
       <h3>{{hobby.name}} users:</h3>
