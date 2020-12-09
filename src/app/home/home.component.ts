@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@
 import { AuthService } from '../auth/auth.service';
 import { ProfileService } from '../profile/profile.service';
 import { switchMap, tap } from 'rxjs/operators';
-import { zip } from 'rxjs';
+import { of, zip } from 'rxjs';
 import { Hobby } from '../profile/models/hobby.model';
 import { HobbyService } from '../hobby/hobby.service';
 
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
       switchMap(user => this.profileService.getProfileInfo(user._id)),
       switchMap(profileInfo => {
         const hobbies = profileInfo.hobbies.map(hobby => this.hobbyService.getHobby(hobby));
-        return zip(...hobbies);
+        return hobbies.length ? zip(...hobbies) : of([]);
       })
     ).subscribe(data => {
       this.hobbies = data;

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProfileInfoEditDialogComponent } from './profile-info-edit-dialog/profile-info-edit-dialog.component';
 import { AuthService } from '../auth/auth.service';
 import { ProfileService } from './profile.service';
-import { Subscription, throwError, zip } from 'rxjs';
+import { of, Subscription, throwError, zip } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ProfileModel } from './models';
 import { ProfileHobbyEditDialogComponent } from './profile-hobby-edit-dialog/profile-hobby-edit-dialog.component';
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       tap(data => {
         this.profile = data;
         const hobbiesObservable = data.hobbies.map(el => this.hobbyService.getHobby(el));
-        this.hobbies$ = zip(...hobbiesObservable);
+        this.hobbies$ = hobbiesObservable.length ? zip(...hobbiesObservable) : of([]);
         this.loading = true;
         this.changeDetectorRef.detectChanges();
       }),

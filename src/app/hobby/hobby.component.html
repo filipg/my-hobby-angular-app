@@ -8,6 +8,7 @@
       <div class="event" *ngFor="let event of hobby.events">
         <h1>{{event.name}}</h1>
         <p>Day: {{event.date}}, time: {{event.time}}</p>
+        <p>Event creator: {{event.userCreator}}</p>
         <p>{{event.description}}</p>
       </div>
     </div>
