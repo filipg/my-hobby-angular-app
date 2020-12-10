@@ -20,7 +20,7 @@ export class HobbyService {
     return this.http.get<Hobby>(`${environment.api}/hobby/${id}`);
   }
 
-  addEvent(hobbyId: string, event: Event): Observable<Hobby> {
-    return this.http.patch<Hobby>(`${environment.api}/hobby/event/${hobbyId}`, event);
+  addEvent(event: Event): Observable<Hobby> {
+    return this.http.post<Hobby>(`${environment.api}/event`, event);
   }
 }

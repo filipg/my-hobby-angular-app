@@ -52,7 +52,7 @@ export class HobbyComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
-        this.hobby = data.data;
+        this.hobby.events.push(data.data);
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -61,5 +61,4 @@ export class HobbyComponent implements OnInit {
   takePart(event: Event): void {
     console.log(event);
   }
-
 }

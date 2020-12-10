@@ -31,19 +31,21 @@ export class HobbyEventsEditDialogComponent implements OnInit {
       description: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required],
+      location: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     this.authService.getUserBaseInfo().pipe(
       switchMap(user => {
-        return this.hobbyService.addEvent(this.data, {
-          id: '1',
+        return this.hobbyService.addEvent({
           name: this.form.value.name,
           description: this.form.value.description,
           userCreator: user.username,
           date: this.form.value.date,
           time: this.form.value.time,
+          location: this.form.value.location,
+          hobbyId: this.data,
           participants: []
         });
       })
