@@ -10,6 +10,7 @@
         <p>Day: {{event.date}}, time: {{event.time}}</p>
         <p>Event creator: {{event.userCreator}}</p>
         <p>{{event.description}}</p>
+        <button (click)="takePart(event)">Take part</button>
       </div>
     </div>
     <div class="users">

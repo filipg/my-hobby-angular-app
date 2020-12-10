@@ -58,4 +58,8 @@ export class HobbyComponent implements OnInit {
     });
   }
 
+  takePart(event: Event): void {
+    console.log(event);
+  }
+
 }

@@ -30,9 +30,26 @@
         border-radius: 16px;
         padding: 10px;
         margin: 10px 0;
+        position: relative;
 
         p {
           font-size: 20px;
+        }
+
+        button {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          outline: none;
+          background: #eeeeee;
+          border-radius: 16px;
+          padding: 10px;
+          border: 1px solid #90caf9;
+          cursor: pointer;
+
+          &:hover {
+            background: #90caf9;
+          }
         }
       }
     }
